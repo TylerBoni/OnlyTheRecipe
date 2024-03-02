@@ -34,6 +34,7 @@ export const supportedDomains = [
     'reseptitaivas.fi',
     'sallysbakingaddiction.com',
     'simplyrecipes.com',
+    'smittenkitchen.com',
     'spendwithpennies.com',
     'tasteofhome.com',
     'tasty.co',
@@ -232,6 +233,13 @@ export const recipeSelectors: domainInformationSelector = {
         titleSelector: 'h1[class="heading__title"]',
         ingredientsSelector: 'div[class="comp structured-ingredients"] > ul > li',
         directionsSelector: 'section[class="comp section--instructions section"] > div > div > ol > li > p',
+    },
+    'smittenkitchen.com' : {
+        titleSelector: 'div[class="hrecipe h-recipe jetpack-recipe"] > h3[class="p-name jetpack-recipe-title fn"]',
+        ingredientsSelector: 'div[class="jetpack-recipe-ingredients"] > ul > h5, div[class="jetpack-recipe-ingredients"] > ul > li',
+        directionsSelector: 'div[class="jetpack-recipe-content"] > p, div[class="jetpack-recipe-content"] > strong'
+        //she's got some jacked-up html with elements in the wrong scope
+        //test URL: https://smittenkitchen.com/2024/02/chocolate-raspberry-pavlova-stack/
     },
     'spendwithpennies.com' : {
         titleSelector: 'h1[class="entry-title"]',
