@@ -19,6 +19,7 @@ export const supportedDomains = [
     'ice.edu',
     'inspiredtaste.net',
     'joyfoodsunshine.com',
+    'joythebaker.com',
     'justonecookbook.com',
     'kingarthurbaking.com',
     'kitchenstories.com',
@@ -151,6 +152,13 @@ export const recipeSelectors: domainInformationSelector = {
         titleSelector: 'div[class="itr-recipe-title"] > h2',
         ingredientsSelector: 'span[class="itr-ingredients"] > p',
         directionsSelector: 'span[class="itr-directions"] > p',
+    },
+    'joythebaker.com' : {
+        titleSelector:'header[class="entry-header"] > h1[class="entry-title"]',
+        ingredientsSelector: 'div[class="tasty-recipes-ingredients-body"] > ul > li, div[class="tasty-recipes-ingredients-body"] > p',
+        ingredientsAmountSelector: 'div[class="tasty-recipes-ingredients-body"] > ul > li > span[class="tr-ingredient-checkbox-container"]',
+        directionsSelector: 'div[class="tasty-recipes-instructions-body"] > ol > li'
+
     },
     'justonecookbook.com' : {
         titleSelector: 'h1[class="entry-title"]',
