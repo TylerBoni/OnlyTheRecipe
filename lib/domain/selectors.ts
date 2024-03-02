@@ -15,6 +15,7 @@ export const supportedDomains = [
     'food.com',
     'foodnetwork.com',
     'gimmesomeoven.com',
+    'halfbakedharvest.com',
     'howtobbqright.com',
     'ice.edu',
     'inspiredtaste.net',
@@ -138,6 +139,11 @@ export const recipeSelectors: domainInformationSelector = {
         titleSelector: 'h1[class="posttitle"]',
         ingredientsSelector: 'div[class="tasty-recipes-ingredients-body"] > ul > li',
         directionsSelector: 'div[class="tasty-recipes-instructions-body"] > ol > li',
+    },
+    'halfbakedharvest.com' : {
+        titleSelector : 'h2[class="wprm-recipe-name wprm-block-text-normal"]',
+        ingredientsSelector : 'li[class="wprm-recipe-ingredient"]',
+        directionsSelector : 'div[class="wprm-recipe-instruction-text"] > span, div[class="wprm-recipe-instruction-group"] > h4,div[class="wprm-recipe-notes"] > span'
     },
     'howtobbqright.com' : {
         titleSelector: 'h1',
