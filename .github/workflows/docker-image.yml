@@ -1,0 +1,67 @@
+name: Docker Image CI V2
+
+on:
+  push:
+    branches: [ "main" ]
+    paths: [ "src/**", "docker-compose.yml", "Dockerfile", "nginx/templates/**" ]
+  pull_request:
+    branches: [ "main" ]
+    paths: [ "src/**", "docker-compose.yml", "Dockerfile", "nginx/templates/**" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Configure SSH
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$SSH_KEY" > ~/.ssh/prod.key
+        chmod 600 ~/.ssh/prod.key
+        cat >>~/.ssh/config <<END
+        Host prod
+          HostName $SSH_HOST
+          User $SSH_USER
+          IdentityFile ~/.ssh/prod.key
+          StrictHostKeyChecking no
+        END
+      env:
+        SSH_USER: ${{ secrets.SSH_USER }}
+        SSH_KEY: ${{ secrets.SSH_KEY }}
+        SSH_HOST: ${{ secrets.SSH_HOST }}
+        APP_ENV_FILE: ${{ secrets.APP_ENV_PROD }}
+
+    - name: Test the ssh connection
+      run: ssh prod && echo "SSH connection successful"
+
+    - name: Build image
+      run: docker compose -f docker-compose.yml build
+
+    - name: Make project directory
+      run: ssh prod mkdir -p /home/$SSH_USER/only-the-recipe
+      env:
+        SSH_USER: ${{ secrets.SSH_USER }}
+
+    - name: Copy env file
+      run: echo $APP_ENV_FILE > .env.app && scp .env.app prod:/home/$SSH_USER/only-the-recipe/.env.app
+      env:
+        SSH_USER: ${{ secrets.SSH_USER }}
+        APP_ENV_FILE: ${{ secrets.APP_ENV_PROD }}
+
+    - name: Copy docker-compose file
+      run: scp docker-compose.yml prod:/home/$SSH_USER/only-the-recipe/docker-compose.yml
+      env:
+        SSH_USER: ${{ secrets.SSH_USER }}
+
+    - name: Copy nginx config
+      run: git submodule update --init --recursive && scp -r ./nginx prod:/home/$SSH_USER/only-the-recipe
+      env:
+        SSH_USER: ${{ secrets.SSH_USER }}
+
+    - name: Deploy image
+      run: docker save tylerboni/onlytherecipe | bzip2 | ssh prod docker load
+
+    - name: Start the service
+      run: ssh prod docker compose -f /home/$SSH_USER/only-the-recipe/docker-compose.yml up -d
+      env:
+        SSH_USER: ${{ secrets.SSH_USER }}
