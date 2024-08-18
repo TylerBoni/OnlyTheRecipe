@@ -53,19 +53,19 @@ export default function Layout({
             <a>← Back to home</a>
           </Link>
           <div style={{ display: 'flex', flexDirection: 'row', paddingTop: 10 }} >
-            <a style={{ paddingRight: 10}} href="https://www.buymeacoffee.com/jpbulman" target="_blank">
-              <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" 
-                  alt="Buy Me A Coffee" 
-                  className={utilStyles.coffee} />
+            <a style={{ paddingRight: 10 }} href="https://www.buymeacoffee.com/tylerboni" target="_blank">
+              <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"
+                alt="Buy Me A Coffee"
+                className={utilStyles.coffee} />
             </a>
-            <a href="https://github.com/jpbulman/OnlyTheRecipe" target="_blank">
+            <a href="https://github.com/tylerboni/OnlyTheRecipe" target="_blank">
               <Image
-                  priority
-                  src="/images/github.png"
-                  width={32}
-                  height={32}
-                  alt="GitHub"
-                />
+                priority
+                src="/images/github.png"
+                width={32}
+                height={32}
+                alt="GitHub"
+              />
             </a>
           </div>
         </div>

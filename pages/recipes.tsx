@@ -15,7 +15,7 @@ const domainNotSupported = (url: string) => {
                 <a href={url} target="_blank">Original URL</a>
                 <h1>Uh-oh! 🔧</h1>
                 <p>Unfortunately we couldn't parse this recipe. Please open an issue
-                    <a href="https://github.com/jpbulman/OnlyTheRecipe/issues/new" target="_blank"> here </a>
+                    <a href="https://github.com/tylerboni/OnlyTheRecipe/issues/new" target="_blank"> here </a>
                     (make sure to include the recipe URL!) and someone will try and add support for this recipe!
                 </p>
             </div>
