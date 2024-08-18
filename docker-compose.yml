@@ -3,7 +3,7 @@ services:
   app:
     build: ./
     env_file: .env.app
-    image: aboni/website
+    image: tylerboni/onlytherecipe
     restart: unless-stopped
 
   nginx:
