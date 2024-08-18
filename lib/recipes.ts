@@ -11,6 +11,7 @@ export type IngredientsSection = {
 
 export interface RecipeMetadata {
     title: string,
+    description?: string,
     ingredients: IngredientsSection[],
     directions: string[],
     domainIsSupported: boolean,
@@ -19,13 +20,13 @@ export interface RecipeMetadata {
 // https://stackoverflow.com/a/43467144/7355232
 function isValidHttpUrl(string) {
     let url: URL;
-    
+
     try {
-      url = new URL(string);
+        url = new URL(string);
     } catch (_) {
-      return false;  
+        return false;
     }
-  
+
     return url.protocol === "http:" || url.protocol === "https:";
 }
 
@@ -96,7 +97,7 @@ export const getItemListFromSelector = (html, selector: string): string[] => {
     listItems.map((_, element) => {
         textValues.push($(element).text().trim())
     });
-    
+
     return textValues
 }
 

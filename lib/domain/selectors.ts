@@ -1,5 +1,6 @@
 export const supportedDomains = [
-    'allrecipes.com',
+    // 'allrecipes.com',
+    'americastestkitchen.com',
     'bbcgoodfood.com',
     'bettycrocker.com',
     'blueberry.org',
@@ -50,6 +51,7 @@ export const domainIsSupported = (domain: string): boolean => {
 
 export const annoyingToParseDomains = [
     'bonappetit.com',
+    'americastestkitchen.com',
     'joyfoodsunshine.com',
     'cooking.nytimes.com',
     'tasty.co',
@@ -70,42 +72,47 @@ type recipeSelectorSet = {
 type domainInformationSelector = { [key in typeof supportedDomains[number]]?: recipeSelectorSet };
 
 export const recipeSelectors: domainInformationSelector = {
-    'allrecipes.com' : {
+    'allrecipes.com': {
         titleSelector: 'div[class="headline-wrapper"] > h1',
         ingredientsSelector: 'section[data-tracking-zone="recipe-ingredients"] > fieldset > ul > li',
         directionsSelector: 'ul[class="instructions-section"] > li',
+    },
+    'americastestkitchen.com': {
+        titleSelector: 'h1[class="heading-1"]',
+        ingredientsSelector: 'div[class="list-ingredients"] > ul > li',
+        directionsSelector: 'ol[class="list-steps list-unstyled"] > li',
     },
     'bbcgoodfood.com': {
         titleSelector: 'h1[class="heading-1"]',
         ingredientsSelector: 'section.recipe__ingredients ul li',
         directionsSelector: 'section.recipe__method-steps ul li',
     },
-    'bettycrocker.com' : {
+    'bettycrocker.com': {
         titleSelector: 'h1[class="rdpTitle"]',
         ingredientsSelector: 'div[class="rdpIngredients"] > ul > li',
         directionsSelector: 'ul[class="recipeSteps"] > li',
     },
-    'blueberry.org' : {
+    'blueberry.org': {
         titleSelector: 'h1[itemprop="name"]',
         ingredientsSelector: 'div[class="ingredients"] > ul > li',
         directionsSelector: 'section[itemprop="recipeInstructions"] > div > ol > li',
     },
-    'budgetbytes.com' : {
+    'budgetbytes.com': {
         titleSelector: 'h1[class="title"]',
         ingredientsSelector: 'ul[class="wprm-recipe-ingredients"] > li',
         directionsSelector: 'ul[class="wprm-recipe-instructions"] > li',
     },
-    'cookingclassy.com' : {
+    'cookingclassy.com': {
         titleSelector: 'h1[class="title"]',
         ingredientsSelector: 'ul[class="wprm-recipe-ingredients"] > li',
         directionsSelector: 'ul[class="wprm-recipe-instructions"] > li',
     },
-    'christinascucina.com' : {
+    'christinascucina.com': {
         titleSelector: 'h2.mv-create-title',
         ingredientsSelector: 'div.mv-create-ingredients > ul > li',
         directionsSelector: 'div.mv-create-instructions li, div.mv-create-instructions *:header:not(*[class~="mv-create-instructions-title"])'
     },
-    'delish.com' : {
+    'delish.com': {
         titleSelector: 'h1[class="content-hed recipe-hed"]',
         ingredientsSelector: 'div[class="ingredient-lists"] > div[class="ingredient-item"] > span[class="ingredient-description"] > p',
         ingredientsAmountSelector: 'div[class="ingredient-lists"] > div[class="ingredient-item"] > span[class="ingredient-amount"]',
@@ -116,126 +123,126 @@ export const recipeSelectors: domainInformationSelector = {
     //     ingredientsSelector: 'div[id="rco"] > ul > li',
     //     directionsSelector: 'div[class="dr"] > p',
     // },
-    'epicurious.com' : {
+    'epicurious.com': {
         titleSelector: 'h1[data-testid="ContentHeaderHed"]',
         ingredientsSelector: 'div[data-testid="IngredientList"] > div > div',
         directionsSelector: 'div[data-testid="InstructionsWrapper"] > div > div',
     },
-    'food.com' : {
+    'food.com': {
         titleSelector: 'h1',
         ingredientsSelector: 'div.recipe-ingredients__ingredient-parts',
         ingredientsAmountSelector: 'div.recipe-ingredients__ingredient-quantity',
         directionsSelector: 'li.recipe-directions__step'
     },
-    'foodnetwork.com' : {
+    'foodnetwork.com': {
         titleSelector: 'section[class="o-AssetTitle"] > h1 > span',
         ingredientsSelector: 'section[class="o-Ingredients"] > div > p',
         directionsSelector: 'section[data-module="recipe-method"] > div > ol > li',
     },
-    'gimmesomeoven.com' : {
+    'gimmesomeoven.com': {
         titleSelector: 'h1[class="posttitle"]',
         ingredientsSelector: 'div[class="tasty-recipes-ingredients-body"] > ul > li',
         directionsSelector: 'div[class="tasty-recipes-instructions-body"] > ol > li',
     },
-    'howtobbqright.com' : {
+    'howtobbqright.com': {
         titleSelector: 'h1',
         ingredientsSelector: 'div.tasty-recipes-ingredients > div > ul > li',
         directionsSelector: 'div.tasty-recipes-instructions > div > ol > li'
     },
-    'ice.edu' : {
+    'ice.edu': {
         titleSelector: 'h1',
         ingredientsSelector: 'section[class="wysiwyg"] > ul > li',
         directionsSelector: 'ol > li',
     },
-    'inspiredtaste.net' : {
+    'inspiredtaste.net': {
         titleSelector: 'div[class="itr-recipe-title"] > h2',
         ingredientsSelector: 'span[class="itr-ingredients"] > p',
         directionsSelector: 'span[class="itr-directions"] > p',
     },
-    'justonecookbook.com' : {
+    'justonecookbook.com': {
         titleSelector: 'h1[class="entry-title"]',
         ingredientsSelector: 'ul[class="wprm-recipe-ingredients"] > li',
         directionsSelector: 'div[class="wprm-recipe-instruction-text"]',
     },
-    'kingarthurbaking.com' :{
+    'kingarthurbaking.com': {
         titleSelector: 'title',
         ingredientsSelector: 'div[class="ingredient-section"] > ul > li',
         directionsSelector: 'article[class="recipe__instructions"] > div > ol > li > p'
     },
-    'kitchenstories.com' : {
+    'kitchenstories.com': {
         titleSelector: 'h1[class~=recipe-title]',
         ingredientsSelector: 'table.ingredients > tbody > tr > td:nth-child(2)',
         ingredientsAmountSelector: 'table.ingredients > tbody > tr > td:nth-child(1)',
         directionsSelector: 'li[class~="step"] > p[class="text"]'
     },
-    'kotikokki.net' : {
+    'kotikokki.net': {
         titleSelector: 'h1[id="recipe-title"]',
         ingredientsSelector: 'tr.ingredient > td.name',
         ingredientsAmountSelector: 'tr.ingredient > td.amount-unit',
         directionsSelector: 'div.instructions > span > p'
     },
-    'littlesweetbaker.com' : {
+    'littlesweetbaker.com': {
         titleSelector: 'h2[class="tasty-recipes-title"]',
         ingredientsSelector: 'div[class="tasty-recipes-ingredients"] > div > ul > li',
         directionsSelector: 'div[class="tasty-recipes-instructions"] > div > ol > li',
     },
-    'loveandlemons.com' : {
+    'loveandlemons.com': {
         titleSelector: 'h1[class="entry-title"] > a',
         ingredientsSelector: 'ul[class="wprm-recipe-ingredients"] > li',
         directionsSelector: 'ul[class="wprm-recipe-instructions"] > li',
     },
-    'myrecipes.com' : {
+    'myrecipes.com': {
         titleSelector: 'h1[class~="heading-content"]',
         ingredientsSelector: 'span.ingredients-item-name',
         directionsSelector: 'li.instructions-section-item > div.section-body'
     },
-    'natashaskitchen.com' : {
+    'natashaskitchen.com': {
         titleSelector: 'h2[class="wprm-recipe-name"]',
         ingredientsSelector: 'div[class="wprm-recipe-ingredient-group"] > ul > li',
         directionsSelector: 'div[class="wprm-recipe-instruction-group"] > ol > li',
     },
-    'onceuponachef.com' : {
+    'onceuponachef.com': {
         titleSelector: 'h1[class="title"]',
         ingredientsSelector: 'div[class="ingredients"] > ul > li > span[class="name"]',
         ingredientsAmountSelector: 'div[class="ingredients"] > ul > li > span[class="amount"]',
         directionsSelector: 'div[class="instructions"] > ol > li',
     },
-    'pillsbury.com' : {
+    'pillsbury.com': {
         titleSelector: 'h1[class="rdpTitle"]',
-        ingredientsSelector : 'div[class="rdpIngredients"] > ul > li',
+        ingredientsSelector: 'div[class="rdpIngredients"] > ul > li',
         directionsSelector: 'ul[class="recipeSteps"] > li'
     },
-    'pinchofyum.com' : {
+    'pinchofyum.com': {
         titleSelector: 'h2[class="tasty-recipes-title"]',
         ingredientsSelector: 'div[class="tasty-recipes-ingredients"] > div > ul > li',
         directionsSelector: 'div[class="tasty-recipes-instructions"] > div > ol > li'
     },
-    'reseptitaivas.fi' : {
+    'reseptitaivas.fi': {
         titleSelector: 'h1.post-title',
         ingredientsSelector: 'div.post-content > ul > li',
         directionsSelector: 'div.post-content > p:not(*[class="mobile-hidden"])'
     },
-    'sallysbakingaddiction.com' : {
+    'sallysbakingaddiction.com': {
         titleSelector: 'h2[class="tasty-recipes-title"]',
         ingredientsSelector: 'div[class="tasty-recipes-ingredients-body"] > ul > li',
         directionsSelector: 'div[class="tasty-recipes-instructions-body"] > ol > li'
     },
-    'simplyrecipes.com' : {
+    'simplyrecipes.com': {
         titleSelector: 'h1[class="heading__title"]',
         ingredientsSelector: 'div[class="comp structured-ingredients"] > ul > li',
         directionsSelector: 'section[class="comp section--instructions section"] > div > div > ol > li > p',
     },
-    'spendwithpennies.com' : {
+    'spendwithpennies.com': {
         titleSelector: 'h1[class="entry-title"]',
         ingredientsSelector: 'div[class="wprm-recipe-ingredient-group"] > ul > li',
         directionsSelector: 'div[class="wprm-recipe-instruction-group"] > ul > li',
     },
-    'tasteofhome.com' : {
+    'tasteofhome.com': {
         titleSelector: 'h1[class="recipe-title"]',
         ingredientsSelector: 'div[class="recipe-ingredients"] > ul > li',
         directionsSelector: 'ol[class="recipe-directions__list"] > li',
     },
-    'tasty.co' : {
+    'tasty.co': {
         titleSelector: 'h1[class="recipe-name extra-bold xs-mb05 md-mb1"]',
         ingredientsSelector: 'div[class="ingredients-prep clearfix col"] > div > div > ul > li',
         directionsSelector: 'div[class="ingredients-prep clearfix col"] > div > ol > li',
@@ -245,28 +252,28 @@ export const recipeSelectors: domainInformationSelector = {
         ingredientsSelector: 'div[class="wprm-recipe-ingredient-group"] > ul > li',
         directionsSelector: 'div[class="wprm-recipe-instruction-group"] > ul > li',
     },
-    'thepioneerwoman.com' : {
+    'thepioneerwoman.com': {
         titleSelector: 'h1[class="content-hed recipe-hed"]',
         ingredientsSelector: 'div[class="ingredient-lists"] > div',
         directionsSelector: 'div[class="direction-lists"] > ol > li',
     },
-    'thestayathomechef.com' : {
+    'thestayathomechef.com': {
         titleSelector: 'header[class="article-header"] > h1',
         ingredientsSelector: 'ul[class="wprm-recipe-ingredients"] > li',
         directionsSelector: 'ul[class="wprm-recipe-instructions"] > li',
     },
-    'valio.fi' : {
+    'valio.fi': {
         titleSelector: 'h1[class^="Title"]',
         ingredientsSelector: 'td[class^="IngredientRowRight"]',
         ingredientsAmountSelector: 'td[class^="IngredientRowLeft"]',
         directionsSelector: 'div[class^="InstructionsRowRight"]'
     },
-    'whatsgabycooking.com' : {
+    'whatsgabycooking.com': {
         titleSelector: 'h1[class="entry-title"]',
         ingredientsSelector: 'li[class="wprm-recipe-ingredient"]',
         directionsSelector: 'div[class="wprm-recipe-instruction-text"]',
     },
-    'yhteishyva.fi' : {
+    'yhteishyva.fi': {
         titleSelector: 'h1[class~="title"]',
         ingredientsSelector: 'div.recipe__ingredients div.ingredient-row > div[class~="name"]',
         ingredientsAmountSelector: 'div.recipe__ingredients div.ingredient-row > div[class~="amount"]',

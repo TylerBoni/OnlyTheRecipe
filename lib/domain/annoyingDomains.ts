@@ -21,6 +21,69 @@ interface JoyFoodSunshineIngredientArray {
     }]
 }
 
+interface AmericasTestKitchenRecipe {
+    name: string,
+    description: string,
+    recipeIngredient: Array<string>[],
+    recipeInstructions: Array<{ name: string, position: string, itemListElement: Array<{ text: string }> }>
+}
+
+const getAmericasTestKitchenData = (html: string): RecipeMetadata => {
+    console.log('Running Americas Test Kitchen')
+    const $ = cheerio.load(html);
+
+    const jsonLd = $('script[type="application/ld+json"]').html();
+
+    if (jsonLd === null) {
+        throw new Error('No JSON-LD found in the page');
+    }
+
+    const recipe: AmericasTestKitchenRecipe = JSON.parse(jsonLd);
+
+    const title = recipe.name;
+    const description = recipe.description;
+
+
+    const ingredients: IngredientsSection[] = []
+    const recipeIngredients = recipe.recipeIngredient
+
+    recipeIngredients.map(ingredientStringList => {
+        const filteredingredientStringList = JSON.stringify(ingredientStringList).split(',').map((ingredient) => {
+            ingredient = ingredient.replace(/"/g, '')
+            console.log(ingredient)
+            return ingredient
+        }).filter((ingredient) => ingredient !== '').join(' ')
+
+        ingredients.push({
+            sectionName: '',
+            ingredients: [filteredingredientStringList]
+        })
+    })
+
+    console.log(ingredients)
+
+    const directions: string[] = [];
+    for (const section of recipe.recipeInstructions) {
+        let i = 1;
+        for (const instruction of section.itemListElement) {
+            directions.push(`${i}. ${instruction.text}`);
+            i++;
+        }
+    }
+
+    const returnData: RecipeMetadata = {
+        title,
+        description,
+        ingredients,
+        directions,
+        domainIsSupported: true
+    }
+
+    return returnData;
+
+
+}
+
 const getBonAppetitData = (html: string): RecipeMetadata => {
     const title = getTitleFromSelector(html, 'h1[data-testid="ContentHeaderHed"]')
 
@@ -232,10 +295,11 @@ type annoyingDomainToSelectionFunction = {
     [key in typeof annoyingToParseDomains[number]]: (html: string) => RecipeMetadata
 }
 
-export const selectionFunctionPerAnnoyingDomain : annoyingDomainToSelectionFunction = {
-    'bonappetit.com' : getBonAppetitData,
-    'joyfoodsunshine.com' : getJoyFoodSunshineData,
-    'cooking.nytimes.com' : getNYTCookingData,
-    'tasty.co' : getTastyCoData,
-    'chefkoch.de' : getChefkochData,
+export const selectionFunctionPerAnnoyingDomain: annoyingDomainToSelectionFunction = {
+    'bonappetit.com': getBonAppetitData,
+    'joyfoodsunshine.com': getJoyFoodSunshineData,
+    'cooking.nytimes.com': getNYTCookingData,
+    'tasty.co': getTastyCoData,
+    'chefkoch.de': getChefkochData,
+    'americastestkitchen.com': getAmericasTestKitchenData
 }
