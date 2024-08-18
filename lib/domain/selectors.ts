@@ -1,5 +1,5 @@
 export const supportedDomains = [
-    // 'allrecipes.com',
+    'allrecipes.com',
     'americastestkitchen.com',
     'bbcgoodfood.com',
     'bettycrocker.com',
@@ -16,10 +16,12 @@ export const supportedDomains = [
     'food.com',
     'foodnetwork.com',
     'gimmesomeoven.com',
+    'halfbakedharvest.com',
     'howtobbqright.com',
     'ice.edu',
     'inspiredtaste.net',
     'joyfoodsunshine.com',
+    'joythebaker.com',
     'justonecookbook.com',
     'kingarthurbaking.com',
     'kitchenstories.com',
@@ -34,6 +36,7 @@ export const supportedDomains = [
     'reseptitaivas.fi',
     'sallysbakingaddiction.com',
     'simplyrecipes.com',
+    'smittenkitchen.com',
     'spendwithpennies.com',
     'tasteofhome.com',
     'tasty.co',
@@ -144,6 +147,11 @@ export const recipeSelectors: domainInformationSelector = {
         ingredientsSelector: 'div[class="tasty-recipes-ingredients-body"] > ul > li',
         directionsSelector: 'div[class="tasty-recipes-instructions-body"] > ol > li',
     },
+    'halfbakedharvest.com': {
+        titleSelector: 'h2[class="wprm-recipe-name wprm-block-text-normal"]',
+        ingredientsSelector: 'li[class="wprm-recipe-ingredient"]',
+        directionsSelector: 'div[class="wprm-recipe-instruction-text"] > span, div[class="wprm-recipe-instruction-group"] > h4,div[class="wprm-recipe-notes"] > span'
+    },
     'howtobbqright.com': {
         titleSelector: 'h1',
         ingredientsSelector: 'div.tasty-recipes-ingredients > div > ul > li',
@@ -158,6 +166,13 @@ export const recipeSelectors: domainInformationSelector = {
         titleSelector: 'div[class="itr-recipe-title"] > h2',
         ingredientsSelector: 'span[class="itr-ingredients"] > p',
         directionsSelector: 'span[class="itr-directions"] > p',
+    },
+    'joythebaker.com': {
+        titleSelector: 'header[class="entry-header"] > h1[class="entry-title"]',
+        ingredientsSelector: 'div[class="tasty-recipes-ingredients-body"] > ul > li, div[class="tasty-recipes-ingredients-body"] > p',
+        ingredientsAmountSelector: 'div[class="tasty-recipes-ingredients-body"] > ul > li > span[class="tr-ingredient-checkbox-container"]',
+        directionsSelector: 'div[class="tasty-recipes-instructions-body"] > ol > li'
+
     },
     'justonecookbook.com': {
         titleSelector: 'h1[class="entry-title"]',
@@ -231,6 +246,13 @@ export const recipeSelectors: domainInformationSelector = {
         titleSelector: 'h1[class="heading__title"]',
         ingredientsSelector: 'div[class="comp structured-ingredients"] > ul > li',
         directionsSelector: 'section[class="comp section--instructions section"] > div > div > ol > li > p',
+    },
+    'smittenkitchen.com': {
+        titleSelector: 'div[class="hrecipe h-recipe jetpack-recipe"] > h3[class="p-name jetpack-recipe-title fn"]',
+        ingredientsSelector: 'div[class="jetpack-recipe-ingredients"] > ul > h5, div[class="jetpack-recipe-ingredients"] > ul > li',
+        directionsSelector: 'div[class="jetpack-recipe-content"] > p, div[class="jetpack-recipe-content"] > strong'
+        //she's got some jacked-up html with elements in the wrong scope
+        //test URL: https://smittenkitchen.com/2024/02/chocolate-raspberry-pavlova-stack/
     },
     'spendwithpennies.com': {
         titleSelector: 'h1[class="entry-title"]',
