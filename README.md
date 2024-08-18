@@ -6,7 +6,7 @@ Most recipes websites have videos and ads flying everywhere, on top of walls of 
 ## Dev Notes
 Clone and checkout the repo
 ```
-git clone https://github.com/jpbulman/OnlyTheRecipe && cd OnlyTheRecipe
+git clone https://github.com/tylerboni/OnlyTheRecipe && cd OnlyTheRecipe
 ```
 Install the dependencies
 ```

@@ -33,39 +33,39 @@ export default function Home() {
         <title>{siteTitle}</title>
       </Head>
       <div className={utilStyles.recipeInputWrapper}>
-        <form style={{width: '100%'}}>
+        <form style={{ width: '100%' }}>
           <input
             id="recipeLinkInput"
             type="text"
             placeholder="Recipe URL"
-            onChange={(e: React.FormEvent<HTMLInputElement>) => setInputValue(e.currentTarget.value) }
+            onChange={(e: React.FormEvent<HTMLInputElement>) => setInputValue(e.currentTarget.value)}
             onKeyDown={keyDown}
           />
         </form>
         <button
           type="submit"
-          style={{ marginTop : 15 }}
+          style={{ marginTop: 15 }}
           onClick={submitRecipe}
         >
           Get The Recipe
         </button>
         <p>No videos. No ads. No walls of text. Only the recipe.</p>
         <div style={{ display: 'flex', flexDirection: 'row', bottom: 0, position: 'fixed', paddingBottom: 15, }} >
-            <a style={{ paddingRight: 10}} href="https://www.buymeacoffee.com/jpbulman" target="_blank">
-              <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" 
-                  alt="Buy Me A Coffee" 
-                  className={utilStyles.coffee} />
-            </a>
-            <a href="https://github.com/jpbulman/OnlyTheRecipe" target="_blank">
-              <Image
-                  priority
-                  src="/images/github.png"
-                  width={32}
-                  height={32}
-                  alt="GitHub"
-                />
-            </a>
-          </div>
+          <a style={{ paddingRight: 10 }} href="https://www.buymeacoffee.com/tylerboni" target="_blank">
+            <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"
+              alt="Buy Me A Coffee"
+              className={utilStyles.coffee} />
+          </a>
+          <a href="https://github.com/tylerboni/OnlyTheRecipe" target="_blank">
+            <Image
+              priority
+              src="/images/github.png"
+              width={32}
+              height={32}
+              alt="GitHub"
+            />
+          </a>
+        </div>
       </div>
     </Layout>
   )
