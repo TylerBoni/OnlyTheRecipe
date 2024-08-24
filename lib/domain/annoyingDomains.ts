@@ -23,13 +23,13 @@ interface JoyFoodSunshineIngredientArray {
 
 interface AmericasTestKitchenRecipe {
     name: string,
+    image: string,
     description: string,
     recipeIngredient: Array<string>[],
     recipeInstructions: Array<{ name: string, position: string, itemListElement: Array<{ text: string }> }>
 }
 
 const getAmericasTestKitchenData = (html: string): RecipeMetadata => {
-    console.log('Running Americas Test Kitchen')
     const $ = cheerio.load(html);
 
     const jsonLd = $('script[type="application/ld+json"]').html();
@@ -41,6 +41,7 @@ const getAmericasTestKitchenData = (html: string): RecipeMetadata => {
     const recipe: AmericasTestKitchenRecipe = JSON.parse(jsonLd);
 
     const title = recipe.name;
+    const image = recipe.image;
     const description = recipe.description;
 
 
@@ -60,19 +61,19 @@ const getAmericasTestKitchenData = (html: string): RecipeMetadata => {
         })
     })
 
-    console.log(ingredients)
 
     const directions: string[] = [];
     for (const section of recipe.recipeInstructions) {
-        let i = 1;
         for (const instruction of section.itemListElement) {
-            directions.push(`${i}. ${instruction.text}`);
-            i++;
+            if (instruction.text) {
+                directions.push(instruction.text);
+            }
         }
     }
 
     const returnData: RecipeMetadata = {
         title,
+        photoUrl: image,
         description,
         ingredients,
         directions,

@@ -26,3 +26,6 @@ yarn-error.log*
 
 # my playground
 research/
+
+# Sentry Config File
+.env.sentry-build-plugin

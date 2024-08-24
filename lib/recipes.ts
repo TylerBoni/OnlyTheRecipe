@@ -11,6 +11,7 @@ export type IngredientsSection = {
 
 export interface RecipeMetadata {
     title: string,
+    photoUrl?: string,
     description?: string,
     ingredients: IngredientsSection[],
     directions: string[],
@@ -18,11 +19,11 @@ export interface RecipeMetadata {
 }
 
 // https://stackoverflow.com/a/43467144/7355232
-function isValidHttpUrl(string) {
+function isValidHttpUrl(url_string: string) {
     let url: URL;
 
     try {
-        url = new URL(string);
+        url = new URL(url_string);
     } catch (_) {
         return false;
     }
@@ -53,7 +54,7 @@ export async function getRecipeInformationForURLAsync(url: string): Promise<Reci
         )
 }
 
-const getRecipeDataForDomain = (domain: string, html): RecipeMetadata => {
+const getRecipeDataForDomain = (domain: string, html: string): RecipeMetadata => {
     if (domainIsAnnoyingToParse(domain)) {
         return selectionFunctionPerAnnoyingDomain[domain](html)
     }
