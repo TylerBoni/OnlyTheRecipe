@@ -54,11 +54,6 @@ jobs:
       env:
         SSH_USER: ${{ secrets.SSH_USER }}
 
-    - name: Copy nginx config
-      run: git submodule update --init --recursive && scp -r ./nginx prod:/home/$SSH_USER/only-the-recipe
-      env:
-        SSH_USER: ${{ secrets.SSH_USER }}
-
     - name: Deploy image
       run: docker save tylerboni/onlytherecipe | bzip2 | ssh prod docker load
 
@@ -66,3 +61,9 @@ jobs:
       run: ssh prod docker compose -f /home/$SSH_USER/only-the-recipe/docker-compose.yml up -d
       env:
         SSH_USER: ${{ secrets.SSH_USER }}
+
+    - name: Copy nginx config
+      run: git submodule update --init --recursive && scp -r ./nginx prod:/home/$SSH_USER/only-the-recipe
+      env:
+        SSH_USER: ${{ secrets.SSH_USER }}
+
