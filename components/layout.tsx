@@ -1,7 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
 const name = 'Only The Recipe'
@@ -15,9 +13,8 @@ export default function Layout({
   home?: boolean
 }) {
   return (
-    <div className={styles.container}>
+    <div className="max-w-3xl mx-auto p-6">
       <Head>
-        {/* https://css-tricks.com/emoji-as-a-favicon/ */}
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌯</text></svg>"></link>
         <meta
           name="description"
@@ -25,46 +22,45 @@ export default function Layout({
         />
         <meta name="og:title" content={siteTitle} />
       </Head>
-      <header className={styles.header}>
+      <header className="flex justify-center items-center flex-col">
         {home ? (
           <>
-            <h1 className={utilStyles.heading5Xl}>🌯</h1>
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h1 className="text-7xl pb-2 pr-4 hover:cursor-default">🌯</h1>
+            <h1 className="text-4xl mb-8 hover:cursor-default">{name}</h1>
           </>
         ) : (
           <>
             <Link href="/">
-              <a>
-                <h1 className={utilStyles.heading5Xl}>🌯</h1>
-              </a>
+              <div className="flex justify-center items-center flex-col hover:cursor-pointer">
+                <text className="block text-7xl pr-2 hover:no-underline">🌯</text>
+                <h2 className="text-2xl mt-4">
+                  <text className="text-gray-900 hover:no-underline">{name}</text>
+                </h2>
+              </div>
             </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h2>
           </>
         )}
       </header>
       <main>{children}</main>
       {!home && (
-        <div className={styles.backToHome}>
+        <div className="mt-8 text-center">
           <Link href="/">
-            <a>← Back to home</a>
+            <a className="text-blue-600 hover:underline">← Back to home</a>
           </Link>
-          <div style={{ display: 'flex', flexDirection: 'row', paddingTop: 10 }} >
-            <a style={{ paddingRight: 10 }} href="https://www.buymeacoffee.com/tylerboni" target="_blank">
+          <div className="flex justify-center items-center pt-4">
+            <a className="pr-4" href="https://www.buymeacoffee.com/tylerboni" target="_blank" rel="noopener noreferrer">
               <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"
                 alt="Buy Me A Coffee"
-                className={utilStyles.coffee} />
+                className="w-32 h-auto" />
             </a>
-            <a href="https://github.com/tylerboni/OnlyTheRecipe" target="_blank">
+            <a href="https://github.com/tylerboni/OnlyTheRecipe" target="_blank" rel="noopener noreferrer">
               <Image
                 priority
                 src="/images/github.png"
                 width={32}
                 height={32}
                 alt="GitHub"
+                className="hover:opacity-80"
               />
             </a>
           </div>
