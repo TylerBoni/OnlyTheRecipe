@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Layout, { siteTitle } from '../components/layout'
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 export type RecipesQueryParameters = {
   originalURL: string,
@@ -36,7 +37,7 @@ export default function Home() {
           <input
             id="recipeLinkInput"
             type="text"
-            placeholder="Recipe URL"
+            placeholder="Type or drop a recipe link here"
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             onChange={(e: React.FormEvent<HTMLInputElement>) => setInputValue(e.currentTarget.value)}
             onKeyDown={keyDown}
@@ -51,14 +52,14 @@ export default function Home() {
         </button>
         <p className="mt-4 text-gray-600">No videos. No ads. No walls of text. Only the recipe.</p>
         <div className="flex flex-row items-center fixed bottom-4 left-1/2 transform -translate-x-1/2 space-x-4">
-          <a href="https://www.buymeacoffee.com/tylerboni" target="_blank" rel="noopener noreferrer">
+          <Link href="https://www.buymeacoffee.com/tylerboni" target="_blank" rel="noopener noreferrer">
             <img
               src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"
               alt="Buy Me A Coffee"
               className="w-32 h-auto"
             />
-          </a>
-          <a href="https://github.com/tylerboni/OnlyTheRecipe" target="_blank" rel="noopener noreferrer">
+          </Link>
+          <Link href="https://github.com/tylerboni/OnlyTheRecipe" target="_blank" rel="noopener noreferrer">
             <Image
               priority
               src="/images/github.png"
@@ -67,7 +68,7 @@ export default function Home() {
               alt="GitHub"
               className="hover:opacity-80"
             />
-          </a>
+          </Link>
         </div>
       </div>
     </Layout>

@@ -1,9 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import { NextRouter, useRouter } from 'next/router'
+import DragDropWrapper from './DragDropWrapper'
 
 const name = 'Only The Recipe'
 export const siteTitle = 'Only The Recipe'
+
+const onDrop = (router: NextRouter, data: string) => {
+  router.push({ pathname: "/recipes", query: { originalURL: data } })
+}
 
 export default function Layout({
   children,
@@ -12,6 +18,7 @@ export default function Layout({
   children: React.ReactNode
   home?: boolean
 }) {
+  const router = useRouter()
   return (
     <div className="max-w-3xl mx-auto p-6">
       <Head>
@@ -41,19 +48,23 @@ export default function Layout({
           </>
         )}
       </header>
-      <main>{children}</main>
+      <main>
+        <DragDropWrapper onDrop={(data) => { onDrop(router, data) }}>
+          {children}
+        </DragDropWrapper>
+      </main>
       {!home && (
         <div className="mt-8 text-center">
           <Link href="/">
-            <a className="text-blue-600 hover:underline">← Back to home</a>
+            <p className="text-blue-600 hover:underline">← Back to home</p>
           </Link>
           <div className="flex justify-center items-center pt-4">
-            <a className="pr-4" href="https://www.buymeacoffee.com/tylerboni" target="_blank" rel="noopener noreferrer">
+            <Link className="pr-4" href="https://www.buymeacoffee.com/tylerboni" target="_blank" rel="noopener noreferrer">
               <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png"
                 alt="Buy Me A Coffee"
                 className="w-32 h-auto" />
-            </a>
-            <a href="https://github.com/tylerboni/OnlyTheRecipe" target="_blank" rel="noopener noreferrer">
+            </Link>
+            <Link href="https://github.com/tylerboni/OnlyTheRecipe" target="_blank" rel="noopener noreferrer">
               <Image
                 priority
                 src="/images/github.png"
@@ -62,7 +73,7 @@ export default function Layout({
                 alt="GitHub"
                 className="hover:opacity-80"
               />
-            </a>
+            </Link>
           </div>
         </div>
       )}
