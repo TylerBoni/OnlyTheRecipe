@@ -74,7 +74,9 @@ export default function Recipe() {
             <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg ">
                 {data.photoUrl && <img src={data.photoUrl} alt={title} className="w-full h-64 object-cover rounded-lg mb-4" />}
                 <h1 className="text-3xl font-bold mb-4">{title}</h1>
-                {/* <Link href={originalURL} target="_blank" className="text-blue-600 underline mb-6 block">Original Recipe</Link> */}
+                {originalURL && (
+                    <Link href={originalURL} target="_blank" className="text-blue-600 underline mb-6 block">Original Recipe</Link>
+                )}
                 <p className="text-gray-700 mb-6">{data.description}</p>
 
                 <h2 className="text-2xl font-semibold mb-4">Ingredients</h2>

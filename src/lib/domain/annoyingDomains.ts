@@ -1,5 +1,5 @@
 import { combineIngredientNamesAndAmounts, getItemListFromSelector, getTitleFromSelector, IngredientsSection, RecipeMetadata } from "../recipes";
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 import { annoyingToParseDomains } from "./selectors";
 
 interface JoyFoodSunshineIngredientArray {
@@ -30,9 +30,12 @@ interface AmericasTestKitchenRecipe {
 }
 
 const getAmericasTestKitchenData = (html: string): RecipeMetadata => {
-    const $ = cheerio.load(html);
+    if (html === null) {
+        throw new Error('No HTML found in the page');
+    }
+    const htmlData = cheerio.load(html);
 
-    const jsonLd = $('script[type="application/ld+json"]').html();
+    const jsonLd = htmlData('script[type="application/ld+json"]').html();
 
     if (jsonLd === null) {
         throw new Error('No JSON-LD found in the page');

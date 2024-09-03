@@ -39,9 +39,9 @@ export default function Layout({
           <>
             <Link href="/">
               <div className="flex justify-center items-center flex-col hover:cursor-pointer">
-                <text className="block text-7xl pr-2 hover:no-underline">🌯</text>
+                <span className="block text-7xl pr-2 hover:no-underline">🌯</span>
                 <h2 className="text-2xl mt-4">
-                  <text className="text-gray-900 hover:no-underline">{name}</text>
+                  <span className="text-gray-900 hover:no-underline">{name}</span>
                 </h2>
               </div>
             </Link>

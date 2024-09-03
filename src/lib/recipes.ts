@@ -1,5 +1,5 @@
 import axios from 'axios';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 import { defaultRecipeData } from '../pages/api/recipes';
 import { selectionFunctionPerAnnoyingDomain } from './domain/annoyingDomains';
 import { domainIsAnnoyingToParse, domainIsSupported, recipeSelectors } from './domain/selectors';
@@ -24,7 +24,7 @@ function isValidHttpUrl(url_string: string) {
 
     try {
         url = new URL(url_string);
-    } catch (_) {
+    } catch {
         return false;
     }
 
