@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { RecipesQueryParameters } from '.'
 import Layout from '../components/layout'
 import { defaultRecipeData, GetOrCreateRecipeEntry } from './api/recipes'
+import Link from 'next/link'
 
 const domainNotSupported = (url: string) => {
     return (
@@ -12,11 +13,11 @@ const domainNotSupported = (url: string) => {
                 <title>Recipe Not Supported</title>
             </Head>
             <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
-                <a href={url} target="_blank" className="text-blue-600 underline">Original URL</a>
+                <Link href={url} target="_blank" className="text-blue-600 underline">Original URL</Link>
                 <h1 className="text-2xl font-bold mt-4">Uh-oh! 🔧</h1>
                 <p className="mt-2 text-gray-700">
                     Unfortunately, we couldn't parse this recipe. Please open an issue
-                    <a href="https://github.com/tylerboni/OnlyTheRecipe/issues/new" target="_blank" className="text-blue-600 underline"> here </a>
+                    <Link href="https://github.com/tylerboni/OnlyTheRecipe/issues/new" target="_blank" className="text-blue-600 underline"> here </Link>
                     (make sure to include the recipe URL!) and someone will try and add support for this recipe!
                 </p>
             </div>
@@ -73,7 +74,7 @@ export default function Recipe() {
             <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg ">
                 {data.photoUrl && <img src={data.photoUrl} alt={title} className="w-full h-64 object-cover rounded-lg mb-4" />}
                 <h1 className="text-3xl font-bold mb-4">{title}</h1>
-                <a href={originalURL} target="_blank" className="text-blue-600 underline mb-6 block">Original Recipe</a>
+                {/* <Link href={originalURL} target="_blank" className="text-blue-600 underline mb-6 block">Original Recipe</Link> */}
                 <p className="text-gray-700 mb-6">{data.description}</p>
 
                 <h2 className="text-2xl font-semibold mb-4">Ingredients</h2>
